@@ -1,0 +1,189 @@
+# Mert Çalışkan - Socket.io - Bootcamp
+
+### Sonradan eklenen kütüphaneler
+
+> _cookie-parser_
+
+`$ npm install cookie-parser` `$ npm install --save @types/cookie-parser`
+
+> crypto-js
+
+`$ npm install crypto-js` `$ npm install --save @types/crypto-js`
+
+> axios
+
+`$  npm install axios`
+
+### Projede:
+
+- Express-Gateway kullanmak için projedeki user, tweet, chat controller 3 klasöre ayrılmış sonrasında https://www.express-gateway.io/getting-started/ sitesindeki yollar izlenerek microservice mimarisine geçildi. 8080 portuyla User ve Tweet servisleri çalışmış olup, Socket.io 8003 portuyla kullanılmıştır.
+
+<details>
+
+<summary> Screenshot </summary>
+
+![Alt text](https://raw.githubusercontent.com/mertcdev/portfolio-works/main/socket.io-bootcamp/images/gateway.png)
+
+</details>
+
+- Client olarak test etmek için POSTMAN ile Switch Request Type "Socket-IO" yapılarak events kısmında user, join group, user joined, message, leave group, disconnect group, user left responseları dinlendi.
+- Message için Arg 1 (userID) - Arg 2 (chatID) - Arg 3(your_message)
+- Kullanıcı isterse 'leave group' ile socket üzerinden gruptan ayrılabilir ve datadan ismi silinir.
+
+<details>
+
+<summary> Screenshot </summary>
+
+![Alt text](https://raw.githubusercontent.com/mertcdev/portfolio-works/main/socket.io-bootcamp/images/socket_test_admin.png)![Alt text](https://raw.githubusercontent.com/mertcdev/portfolio-works/main/socket.io-bootcamp/images/socket_test_user.png)
+
+</details>
+
+- Pagination kısmında dummy datası için axios kütüphanesi kullanılarak internetten 500 kayıt çağrıldı. startIndex, endIndex değişkenleriyle farklı pageIndex ve pageSize değerlerinde dataların filtrelenmesi sağlandı.
+- jwt anahtarlarını manuel girmemek için AES şifrelemesi ile 30 dakikalık cookie session oluşturuldu.
+- Kişisel tercihler için user.data içerisine array preferences() eklendi ve pref.controller oluşturuldu. Kullanıcı user/preferences yoluyla "otpLogin": true or false yapabilmektedir.
+- user.controller kısmında kullancı kayıt olurken varsayılan olarak preferencese eklenmek üzere "otpLogin=False" oluşturuldu.
+
+### Controller üzerinde kullanılan parametreler
+
+<details>
+
+<summary> Spoiler </summary>
+
+> POST: `/user/register`
+
+```json
+{
+  "username": "your_username",
+  "password": "your_password"
+}
+```
+
+> POST: `/user/verify`
+
+```json
+{
+  "username": "your_username",
+  "otpCode": "your_otp_code"
+}
+```
+
+> POST: `/user/login`
+
+```json
+{
+    "username":"your_username",
+    "password": "your_password" // otpLogin = false
+    "OTP": "your_otp_code" // otpLogin = true
+}
+```
+
+> POST: `/user/preferences`
+
+```json
+{
+    "otpLogin": true or false
+}
+```
+
+> POST: `/user/delete`
+
+```json
+{
+  "userID": "UUID"
+}
+```
+
+> POST: `/user/update`
+
+```json
+{
+  "userID": "UUID",
+  "password": "new_password",
+  "birthday": "new_birthday"
+}
+```
+
+> POST: `/chat/create/group`
+
+```json
+{
+  "groupName": "group_name"
+}
+```
+
+> POST: `/chat/join/group`
+
+```json
+{
+  "chatID": "_id"
+}
+```
+
+> POST: `/chat/delete`
+
+```json
+{
+  "chatID": "_id"
+}
+```
+
+> POST: `/tweet/new`
+
+```json
+{
+  "content": "your_tweet"
+}
+```
+
+> POST: `/tweet/update`
+
+```json
+{
+  "tweetID": "UUID",
+  "content": "your_updated_tweet"
+}
+```
+
+> POST: `/tweet/delete`
+
+```json
+{
+  "tweetID": "UUID",
+  "content": "your_deleted_tweet"
+}
+```
+
+> POST: `/tweet/tweets`
+
+```json
+{
+  // All tweets
+}
+```
+
+> GET: `/tweet/usertweet`
+
+```json
+{
+  // User tweets
+}
+```
+
+> POST: `/tweet/like`
+
+```json
+{
+  "tweetID": "UUID"
+}
+```
+
+> POST: `/tweet/comment`
+
+```json
+{
+  "tweetID": "UUID",
+  "comment": "your_comment"
+}
+```
+
+</details>
