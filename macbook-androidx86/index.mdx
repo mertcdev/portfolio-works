@@ -1,0 +1,82 @@
+---
+title: "Android x86 on MacBook Pro 2011 15 inch"
+description: "MacBook Pro 2011 15" Android x86 fixes"
+image:
+  src: ""
+  alt: ""
+tags: ["JS", "NodeJS"]
+---
+
+# MacBook Pro 2011 15" Android x86 fixes
+
+## Before Installation
+
+Force ALWAYS use Intel integrated GPU (EFI variable fix) otherwise it won't boot
+
+Boot with Command + S run this command
+
+```
+nvram fa4ce28d-b62f-4c99-9cc3-6815686e30f9:gpu-power-prefs=%01%00%00%00
+```
+
+## After Installation
+
+Install Android x86 with System root access and install SuperSU 2.79 and Root Explorer
+
+### Wifi FIX
+
+This model uses Broadcom B43xx chipset. It won't work newer kernels and Android Roms. Wifi is slower compared to MacOS and Linux. ie. my connection is of 35 MBps. I get approximately 18 MBps.
+
+Mount EFI Partition with MacOS or live boot OS and change this grub boot entry in `efi/boot/android.cfg`
+
+```js
+add_entry "$live" quiet EXTMOD=b43
+```
+
+If Wifi is Missing after sleep, try Flight Mode. It will refresh UI and wifi appears again
+
+---
+
+### Brightness FIX ([thxMontajd](https://www.reddit.com/r/Androidx86/comments/8ms5ab/comment/dzqg4i9/?utm_source=reddit&utm_medium=web2x&context=3/) from Reddit)
+
+Add these lines in `/system/build.prop`
+
+```js
+backlight.brightness_file=/sys/class/backlight/gmux_backlight/brightness
+backlight.max_brightness_file=/sys/class/backlight/gmux_backlight/max_brightness
+```
+
+---
+
+### Keyboard Backlights FIX
+
+There is no brightness setting for keyboard leds on Android but It can be activated by entering a fixed backlight brightness value.
+
+Add these lines in `/etc/init.sh`
+
+```js
+function init_hal_lights() // or It can be created new function init
+{
+    // current paramater //  chown 1000.1000....
+
+    // min 0 - max 255
+    echo 125 > /sys/class/leds/smc\:\:kbd_backlight/brightness
+
+    // Disable Intel Turbo boost (Optional)
+    echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
+}
+```
+
+### Taskbar App FIX
+
+Current Taskbar app keeps crashing on Androidx86 9.0 r2. Download [latest version](https://github.com/farmerbb/Taskbar/releases) of app and replace in
+`/system/priv-app/Taskbar/Taskbar.apk`
+
+---
+
+### Not Working / Broken
+
+- Sleep (It might be dual gpu problem)
+- Battery shows %80 instead of %100
+- Keyboard Backlight F5-F6 keys (Temp. Fix above)
+- 5gHz WiFi support
