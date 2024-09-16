@@ -1,0 +1,70 @@
+---
+title: 'Nöbetim'
+description: 'Neden çizelge hazırlamak için nöbetim kullanılmalı?'
+image:
+  src: "https://raw.githubusercontent.com/mertcdev/portfolio-works/main/nobetim-project/images/nobetim-card.png"
+  alt: ""
+tags: ["JS", "MongoDB"]
+---
+
+## nöbetim nedir?
+
+nöbetim uygulamasını nöbet çizelgelerini kullanıcı dostu bir arayüz ile daha kolay hazırlanması için geliştirdik. Web sitesi ve mobil arayüzü sayesinde her cihaz için uyumlu bir uygulama haline getirdik. Sektördeki diğer uygulamaların aksine daha fazla özelleştirilebilir olmasını hedefledik.
+
+## Nasıl kullanabilirim?
+
+Uygulamayı kullanabilmek için öncelikle e-mail adresiniz ve şifreniz ile üye olmanız gerekiyor. Hesabınız oluşturulduktan sonra bilgileriniz ile giriş yapıp uygulamayı kullanmaya başlayabilirsiniz.
+
+> nöbetim uygulamasına üyelik için isim soyisim ve hesap bilgileriniz yeterlidir
+
+## Çizelge oluşturmak için ne yapmalıyım ?
+
+Çizelge oluşturmak için öncelikle tanımlamaları belirtmelisiniz. Kurumunuzda bulunan personellerin, nöbet tutulan birimlerin ve personellerin pozisyonları mutlaka belirtilmelidir. Tanımlamaları istediğiniz zaman güncelleyebilir, arşivleyebilir veya silebilirsiniz.
+
+Tanımlamalar genel olarak şu şekilde:
+
+-   **Departmanlar\*** (nöbet tutulan birimler)
+-   **Pozisyonlar\*** (personellerin çalıştığı pozisyonlar)
+-   **Personeller\*** (nöbet listesinde yer alacak olan personeller)
+    -   Mesai saati şablonları (haftalık en az çalışılması gereken mesai saatleri)
+-   Nöbet ve izin şablonları (yazılan nöbetlerin saat aralıkları şablonları)
+-   Tatiller (kurumunuzda geçerli olan özel ve resmi tatiller)
+
+`* ile işaretli alanlarda mutlaka en az 1 kayıt olması gerekiyor`
+
+## Neden bu kadar çok tanımlama gerekiyor ?
+
+Aslında sadece nöbet tutulan departmanlar, pozisyonlar ve personelleri belirtmeniz yeterli. Herkes eşit pozisyonda çalışıyorsa bir kayıt eklemeniz yeterli oluyor. Mesai saati şablonları, tatiller ve diğer şablonlar istatistik bölümünde detaylı mesai saati ve nöbet sayısı gibi istatistikleri görmek için doğru girilmesi önemli.
+
+> Resmi ve kuruma özel tatiller belirtildiğinde mesai saatinden düşülüp hesaplanmaktadır
+
+İstatistik konusu nöbet çizelgelerinin adil olduğunu göstermek açısından önemlidir. O yüzden istatistik bölümünü daha da geliştirmeyi hedefliyoruz.
+
+## 1.0.0 sürümündeki uygulama özellikleri
+
+-   Belirlediğiniz tarih aralığına ait geçerli çizelge dışında alternatif çizelgeler oluşturabilme
+-   Tarih aralığını en fazla 31 gün olacak şekilde esnek olarak belirleyebilme
+-   2 farklı takvim formatı ile kurumunuza en uygun formatta kullanabilme
+-   Çizelge istatistikleri ve tarih aralıklarına göre istatistikler
+-   Blok nöbetlerin, çakışan nöbetlerin ve yetersiz dinlenme sürelerinin çizelge üzerinde belirtilmesi
+-   Toplu nöbet ekleyebilme
+-   Basit çizelge yazdırma
+-   Destek paneli
+
+## Yeni sürümler ve hedefler
+
+Uygulamamızı sürekli güncelliyor ve yeni özellikler ekliyoruz. Kullanıcı deneyimini en üst seviyeye çıkarabilmek için destek panelinden bize önerilerinizi bildirebilirsiniz.
+
+Her 2 haftada bir geridönüşleriniz ve yeni özellikler eklenmesi amacıyla uygulamanın güncellenmesini planladık. Her yeni blog yazımızda yeni özelliklerden ve sık sorulan sorulara cevap vermeye çalışacağız.
+
+nöbetim ailesine hoşgeldiniz diyoruz ve uygulamamıza yakında gelecek olan güncellemeden bazı özellikleri belirtmek istiyoruz.
+
+### Yeni güncelleme ile planlanan değişiklikler
+
+-   Hata düzeltmeleri
+-   Destek merkezinde daha detaylı yardım sayfaları
+-   Kullanıcı dostu karşılama ekranı
+-   Çizelgeler için özelleştirilebilir altbilgi ve üstbilgi şablonları
+-   Gelişmiş yazdırma seçenekleri (PDF, Excel ve Word uygulamalarına aktarma)
+-   Gelişmiş istatistikler ve kullanıcı dostu istatistik arayüzü
+-   Otomatik çizelge hazırlama modülü (beta)
